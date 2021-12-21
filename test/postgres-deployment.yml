@@ -1,0 +1,39 @@
+# Define a 'Service' To Expose postgres to Other Services
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata: 
+      labels:  # postgres Pod Should contain same labels
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:10.4
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 5432
+          env:
+           - name: POSTGRES_USER
+             valueFrom:
+               secretKeyRef:
+                 name: postgres-secrets
+                 key: username
+           - name: POSTGRES_PASSWORD
+             valueFrom:
+               secretKeyRef:
+                 name: postgres-secrets
+                 key: password
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgredb
+      volumes:
+        - name: postgredb # Define a 'Persistent Voulume Claim'(PVC) for Postgress Storage, dynamically provisioned by cluster
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim # name of PVC essential for identifying the storage data

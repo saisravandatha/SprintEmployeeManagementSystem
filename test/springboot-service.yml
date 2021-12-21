@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:  
+    app: employee-management-system
+  name: employee-management-system
+spec:
+  ports:
+    - name: employee-management-system
+      port: 8080
+      protocol: TCP
+  selector:
+    app: employee-management-system
+  type: LoadBalancer
