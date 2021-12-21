@@ -1,0 +1,30 @@
+ADD:
+http://localhost:9999/StatusReport/add
+{
+    "statusId":"10",
+    "comments":"How much time will it take to get resloved",
+    "details":"MYSQL connector",
+    "createDate":"2021-11-30",
+    "userId":"1",
+    "complianceId":"1",
+    "statusreport":"open"
+}
+
+UPDATE:
+http://localhost:9999/StatusReport/updateStatus
+
+{
+    "statusId":"10",
+    "comments":"The issue is resloved",
+    "details":"MYSQL connector",
+    "createDate":"2021-11-30",
+    "userId":"1",
+    "complianceId":"1",
+    "statusreport":"closed"
+}
+
+GET: Counting Status Reports
+http://localhost:9999/StatusReport/count
+OUTPUT:
+1
+

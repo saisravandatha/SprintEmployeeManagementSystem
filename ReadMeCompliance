@@ -1,0 +1,72 @@
+MySQL
+Db Records :
+ create database myproject;
+ use myproject;
+ 
+ insert into compliance values(1,"2021-12-02","My SQL connector","Software","Open");
+ insert into compliance values(2,"2021-12-03","Sonar qube","Software","Open");
+ insert into compliance values(3,"2021-12-01","display problem","Hardware","Open");
+ 
+ commit;
+ 
+ GetAll :
+http://localhost:9999/compliances
+[
+    {
+        "complianceId": 1,
+        "IType": "Software",
+        "Details": "My SQL connector",
+        "CreateDate": "2021-12-02",
+        "Status": "Closed"
+    },
+    {
+        "complianceId": 2,
+        "IType": "Software",
+        "Details": "Sonar qube",
+        "CreateDate": "2021-12-03",
+        "Status": "Open"
+    },
+    {
+        "complianceId": 3,
+        "IType": "Hardware",
+        "Details": "display problem",
+        "CreateDate": "2021-12-01",
+        "Status": "Open"
+    }
+]
+
+ Search ID :
+ Get :
+ http://localhost:9999/compliances/1
+ {
+    "complianceId": 1,
+    "itype": "Software",
+    "details": "My SQL connector",
+    "createdate": "2021-12-02",
+    "status": "Closed",
+    "department": null
+}
+ 
+ Put : Update Record 
+http://localhost:9999/updateCompliance
+ {
+        "complianceId":"1",
+        "IType": "Software",
+        "Details": "My SQL connector",
+        "CreateDate": "2021-12-02",
+        "Status": "Closed"
+    }
+   
+   Output: compliance updated successfully
+
+ Post : Add records 
+http://localhost:9999/compliances
+{
+        "complianceId":"4",
+        "IType": "Software",
+        "Details": "Junit5 tester",
+        "CreateDate": "2021-12-01",
+        "Status": "Open"
+    }
+    
+    Output:Compliance Added Successfully
